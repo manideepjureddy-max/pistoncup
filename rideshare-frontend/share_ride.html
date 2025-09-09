@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Share a Ride</title>
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #377dff;
+      color: white;
+      min-height: 100vh;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .container {
+      background: rgba(255,255,255,0.95);
+      border-radius: 16px;
+      padding: 40px 50px;
+      max-width: 400px;
+      width: 90%;
+      box-sizing: border-box;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      color: #212121;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 30px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    input, select {
+      padding: 12px 16px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1.5px solid #ccc;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus {
+      border-color: #377dff;
+    }
+    button {
+      background: #377dff;
+      color: white;
+      border: none;
+      padding: 14px 0;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #2052a6;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #377dff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Share a Ride</h2>
+    <form id="shareRideForm">
+      <input type="text" name="startLocation" placeholder="Starting Location" required />
+      <input type="text" name="destination" placeholder="Destination" required />
+      <input type="datetime-local" name="dateTime" required />
+      <input type="number" name="availableSeats" min="1" max="10" placeholder="Available Seats" required />
+      <button type="submit">Offer Ride</button>
+    </form>
+    <a href="ride_options.html">Back to Ride Options</a>
+  </div>
+
+  <script>
+    document.getElementById('shareRideForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Ride offer submitted!');
+      // Implement submission logic here
+    });
+  </script>
+</body>
+</html>

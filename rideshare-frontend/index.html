@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login & Signup - Travel Theme</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('img1.jpg');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      box-sizing: border-box;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.44);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .container {
+      max-width: 800px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+      width: 90%;
+    }
+    .form-box {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(60, 60, 120, 0.1);
+      padding: 32px 28px;
+      width: 350px;
+      box-sizing: border-box;
+      backdrop-filter: blur(8px);
+    }
+    .form-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #212121;
+    }
+    .form-box form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .form-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-box input:focus {
+      border-color: #113b7d;
+      box-shadow: 0 1px 4px rgba(55, 125, 255, 0.12);
+    }
+    .form-box .toggle-link {
+      color: #113b7d;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      margin-left: 6px;
+    }
+    .form-box .forgot {
+      display: block;
+      text-align: right;
+      font-size: 0.97rem;
+      color: #113b7d;
+      margin-bottom: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .form-box button {
+      width: 100%;
+      background: #113b7d;
+      color: #fff;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+      padding: 12px 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.24s;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .form-box button:hover {
+      background: #2052a6;
+    }
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Login Form -->
+    <div class="form-box" id="loginForm">
+      <h2>Login</h2>
+      <form id="loginFormElement">
+        <input type="text" placeholder="Username" required />
+        <input type="password" placeholder="Password" required />
+        <a href="#" class="forgot">Forgot password?</a>
+        <button type="submit">Login</button>
+      </form>
+      <div style="text-align:center; font-size:1rem;">
+        Don't have an account?
+        <span class="toggle-link" onclick="showSignup()">Signup</span>
+      </div>
+    </div>
+    <!-- Signup Form -->
+    <div class="form-box" id="signupForm" style="display:none;">
+      <h2>Signup</h2>
+      <form>
+        <input type="text" placeholder="Username" required />
+        <input type="password" placeholder="Create password" required />
+        <input type="password" placeholder="Confirm password" required />
+        <button type="submit">Signup</button>
+      </form>
+      <div style="text-align:center; font-size:1rem;">
+        Already have an account?
+        <span class="toggle-link" onclick="showLogin()">Login</span>
+      </div>
+    </div>
+  </div>
+<script>
+  // Login form submission handler redirects to ride options
+  const loginFormElement = document.getElementById('loginFormElement');
+  loginFormElement.addEventListener('submit', function(e) {
+    e.preventDefault();
+    // For now, we skip actual username/password validation
+    window.location.href = 'ride_options.html';
+  });
+
+  // Toggle forms
+  function showSignup() {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('signupForm').style.display = 'block';
+  }
+  function showLogin() {
+    document.getElementById('signupForm').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';
+  }
+</script>
+</body>
+</html>

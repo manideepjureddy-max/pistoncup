@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ride Options</title>
+  <style>
+    /* Base Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: url('img2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(3px);
+      z-index: 0;
+    }
+
+    /* Header Top menu */
+    .menu-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .menu-button {
+      background: #377dff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 1.4rem;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      transition: background 0.3s ease, transform 0.2s;
+    }
+    .menu-button:hover {
+      background: #2052a6;
+      transform: scale(1.05);
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background: #fff;
+      color: #212121;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      width: 180px;
+      display: none;
+      flex-direction: column;
+      padding: 10px 0;
+      animation: fadeIn 0.25s ease;
+    }
+    .dropdown-menu.show { display: flex; }
+    .dropdown-menu button {
+      background: none;
+      border: none;
+      padding: 12px 18px;
+      text-align: left;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #212121;
+      transition: background 0.2s;
+    }
+    .dropdown-menu button:hover {
+      background: #f5f5f5;
+    }
+
+    /* Main Card */
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 50px 40px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1;
+      animation: dropIn 0.6s ease;
+    }
+
+    .container h1 {
+      color: #212121;
+      font-size: 1.9rem;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin: 14px 0;
+      padding: 16px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #377dff, #2052a6);
+      color: white;
+      box-shadow: 0 6px 20px rgba(55, 125, 255, 0.35);
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(32, 82, 166, 0.45);
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+    .btn span {
+      margin-left: 8px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-25px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      .container { padding: 30px 20px; }
+      .container h1 { font-size: 1.6rem; }
+      .btn { font-size: 1rem; padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Menu -->
+  <div class="menu-container">
+    <button class="menu-button" id="menuBtn">☰</button>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <button onclick="navigateTo('profile.html')">Profile</button>
+      <button onclick="navigateTo('history.html')">Ride History</button>
+      <button onclick="navigateTo('help.html')">Help</button>
+      <button onclick="logout()">Log Out</button>
+    </div>
+  </div>
+
+  <!-- Main Card -->
+  <div class="container">
+    <h1>Select Your Ride Option</h1>
+    <button class="btn" onclick="navigateTo('share_ride.html')">🚗 <span>Share a Ride</span></button>
+    <button class="btn" onclick="navigateTo('book_ride.html')">📍 <span>Book a Ride</span></button>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('show');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.classList.remove('show');
+      }
+    });
+
+    function navigateTo(page) {
+      // Optional: Add loading animation here before redirect
+      window.location.href = page;
+    }
+
+    function logout() {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
